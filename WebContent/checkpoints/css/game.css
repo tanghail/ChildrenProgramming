@@ -1,0 +1,76 @@
+body{
+	margin:0;
+	padding:0;
+}
+#container{
+	width:100%;
+	height:720px;
+	background-color: aqua;
+}
+#content-menu{
+
+	width:40%;
+	height:720px;
+	background-color: chartreuse;
+	position: fixed;
+	top: 0px;
+	left:720px;
+}
+#content-about{
+	width:20%;
+	height:40%;
+	position: absolute;
+	bottom:0px;
+	background-color: azure;
+}
+#content-code{
+	width:100%;
+	height:60%;
+	position: absolute;
+	left: 0%;
+	background-color: azure;
+}
+#button_start{
+	width:15%;
+	position:absolute;
+	bottom:5%;
+	right:2%;
+}
+#button_switchHint{
+	width:15%;
+	position:absolute;
+	bottom:5%;
+	right:22%;
+}
+#button_returnTop{
+	width:15%;
+	position:absolute;
+	bottom:5%;
+	right:42%;
+}
+#content-button{
+	width:80%;
+	height:40%;
+	position: absolute;
+	left: 20%;
+	bottom:0%;
+	background-color: azure;
+}
+#footer{
+	width:100%;
+	height:10%;
+	background-color: darkgrey;
+
+
+	clear: both;
+}
+.text{
+	height:80%;
+	width: 99%;
+	resize: none;
+	line-height: 1.5;
+	font-size: 20px;
+	font-family: "Microsoft JhengHei";
+	color:darkgrey;
+	background: #EEEEEE;
+}

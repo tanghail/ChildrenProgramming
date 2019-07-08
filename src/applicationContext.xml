@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+     
+     
+     
+     <!-- 数据源封装类 -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+  		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
+  		<property name="url" value="jdbc:mysql://localhost:3306/cos?characterEncoding=utf8&amp;allowPublicKeyRetrieval=true&amp;useSSL=false&amp;serverTimezone=UTC&amp;rewriteBatchedStatements=true"></property>
+  		<property name="username" value="root"></property>
+  		<property name="password" value="THL340825"></property>
+    </bean>
+    
+    <!-- sqlSessionFactory工厂对象 -->
+    <bean id="factory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    	<property name="dataSource" ref="dataSource"></property>
+    </bean>
+    
+    <!-- mapper扫描器，相当于myabtis.xml文件下的mappers/package标签，会将该包下的接口扫描装载 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    	<!-- 要扫描的包目录 -->
+    	<property name="basePackage" value="com.thl.mapper"></property>
+    	<!-- 对应于哪个sqlSession工厂 -->
+    	<property name="sqlSessionFactory" ref="factory"></property>
+    </bean>
+    
+    <!-- 配置登录模块的service的实现类 -->
+    <bean id="loginServiceImpl" class="com.thl.service.impl.LoginServiceImpl">
+    	<property name="userMapper" ref="userMapper"></property>
+    </bean>
+    
+    <!-- 配置游戏模块的service的实现类 -->
+    <bean id="gameServiceImpl" class="com.thl.service.impl.GameServiceImpl">
+    	<property name="userMapper" ref="userMapper"></property>
+    </bean>
+    <aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
+    <bean id="mybefore" class="com.thl.advice.MyBefore"></bean>
+    <bean id="myafter" class="com.thl.advice.MyAfter"></bean>
+    
+    
+    <!-- 对实现类配置日志记录功能 利用schema-base实现 -->
+    <aop:config>
+    	
+    	<!-- 切点是登录功能 -->
+    	<!-- 注意星号之后要有一个空格，否则会报错 -->
+    	<aop:pointcut expression="execution(* com.thl.service.impl.LoginServiceImpl.checkUser(..))" id="mypoint"/>
+    	<aop:advisor advice-ref="mybefore" pointcut-ref="mypoint"/>
+    	<aop:advisor advice-ref="myafter" pointcut-ref="mypoint"/>
+    </aop:config>
+    
+    
+    
+</beans>

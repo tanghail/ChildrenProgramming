@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<title>Level 2-6</title>
+	<link rel="stylesheet" type="text/css" href="css/game.css"></link>
+	<style type="text/css">
+        #button_step{
+            width:15%;
+            position:absolute;
+            top:20%;
+            left:10%;
+        }
+		#button_turnLeft{
+			width:15%;
+            position:absolute;
+            top:20%;
+            left:30%;
+		}
+		#button_turnRight{
+			width:15%;
+            position:absolute;
+            top:20%;
+            left:50%;
+		}
+		#button_timesEnd{
+			width:18%;
+            position:absolute;
+            top:20%;
+            left:70%;
+		}
+    </style>
+</head>
+<body>
+	<div id="container">
+		<canvas width="720" height="720" id="game"></canvas>
+		<script type="text/javascript" src="javascript/map_2_6.js"></script>
+		<script type="text/javascript" src="javascript/level_2_6.js"></script>
+		<div id="content-menu">
+			<div id="content-code">代码区
+				<textarea id="code" class="text"></textarea>
+				<button id="button_start" onclick="test()">开始游戏</button>
+				<button id="button_switchHint" onclick="switchHint()">提示</button>
+				<button id="button_returnTop" onclick="returnTop()">返回首页</button>
+			</div>
+			<div id="content-about">提示
+				<p id="about"></p>
+			</div>
+			<div id="content-button">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;控件区
+				<button id="button_step" onclick="step()">step</button>
+				<button id="button_turnLeft" onclick="turnLeft()">turn left</button>
+				<button id="button_turnRight" onclick="turnRight()">turn right</button>
+				<button id="button_timesEnd" onclick="timesEnd()">times...end</button>
+			</div>
+		</div>
+		<!--
+		<div id="footer">底部</div>
+		-->
+	</div>
+</body>
+</html>
